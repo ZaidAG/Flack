@@ -1,11 +1,17 @@
 import requests
+import json
+from urllib.parse import urlparse
 
-r = requests.get('https://jsonplaceholder.typicode.com/todos/1',auth=('user', 'pass'))
-r.status_code
 
-r.headers['content-type']
-r.encoding
-r.text
-r.json()
+try:
+    api_response = requests.get('https://jsonplaceholder.typicode.com/todos')
+    api_respose_json = api_response.json()
+    print(api_respose_json)
+    for item in api_respose_json:
+        print(item)
+    # Go through all of the todos and sort them by ascending alphabitcal order (a-z) based on the second letter in each todo's title
+    
+except Exception as error:
+    print("There was an error with the request", error)
 
-print("Hello World")
+
